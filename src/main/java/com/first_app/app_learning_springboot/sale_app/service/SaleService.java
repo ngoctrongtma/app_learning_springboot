@@ -29,33 +29,28 @@ public class SaleService {
     public Sale getSaleById(Integer saleId){
         return saleRepository.findById(saleId).get();
     }
+
     // create sale
     public void createSale(Sale sale){
         saleRepository.save(sale);
     }
 
     // update sale
-//    @Transactional
-//    public void updateSale(Integer saleId, Integer timeId, Integer productId, Integer locationId){
-//        Sale sale = saleRepository.findById(saleId).orElseThrow(() -> new IllegalStateException("Time is not exists!"));
-//        if(timeId != null){
-//            sale.set(month);
-//        }
-//        if(year != null && !Objects.equals(time.getYear(), year)){
-//            time.setYear(year);
-//        }
-//        if(quarter != null && !Objects.equals(time.getQuarter(), quarter)){
-//            time.setQuarter(quarter);
-//        }
-//    }
+    @Transactional
+    public void updateSale(Integer saleId,Double dollars){
+        Sale sale = saleRepository.findById(saleId).orElseThrow(() -> new IllegalStateException("sale is not exists!"));
+        if(dollars != null && sale.getDollars() != dollars){
+            sale.setDollars(dollars);
+        }
+    }
 
     // delete product
-//    public void deleteTime(Integer timeId){
-//        boolean exists = timeRepository.existsById(timeId);
-//        if(!exists){
-//            throw new IllegalStateException("Id is not exists!");
-//        }
-//        timeRepository.findById(timeId);
-//        timeRepository.deleteById(timeId);
-//    }
+    public void deleteSale(Integer saleId){
+        boolean exists = saleRepository.existsById(saleId);
+        if(!exists){
+            throw new IllegalStateException("Id is not exists!");
+        }
+        saleRepository.findById(saleId);
+        saleRepository.deleteById(saleId);
+    }
 }
