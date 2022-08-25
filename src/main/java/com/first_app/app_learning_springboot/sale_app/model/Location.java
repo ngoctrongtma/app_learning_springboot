@@ -17,7 +17,6 @@ public class Location {
     @Column(name = "city")
     private String city;
 
-
     @OneToMany(mappedBy = "location", cascade = CascadeType.ALL)  // MappedBy point to 'location variable' in Sales.
     private Collection<Sale> sales;
 

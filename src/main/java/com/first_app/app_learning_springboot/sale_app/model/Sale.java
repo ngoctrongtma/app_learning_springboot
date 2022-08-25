@@ -29,8 +29,7 @@ public class Sale {
 
     private Double dollars;
 
-    public Sale(Integer id, Product product, Location location, Time time, Double dollars) {
-        this.id = id;
+    public Sale(Product product, Location location, Time time, Double dollars) {
         this.product = product;
         this.location = location;
         this.time = time;

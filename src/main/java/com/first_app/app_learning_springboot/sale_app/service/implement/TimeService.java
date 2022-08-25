@@ -1,9 +1,10 @@
-package com.first_app.app_learning_springboot.sale_app.service;
+package com.first_app.app_learning_springboot.sale_app.service.implement;
 
 import com.first_app.app_learning_springboot.sale_app.model.Product;
 import com.first_app.app_learning_springboot.sale_app.model.Time;
 import com.first_app.app_learning_springboot.sale_app.repository.ProductRepository;
 import com.first_app.app_learning_springboot.sale_app.repository.TimeRepository;
+import com.first_app.app_learning_springboot.sale_app.service.TimeServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +13,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Service
-public class TimeService {
+public class TimeService implements TimeServiceInterface {
     private final TimeRepository timeRepository;
 
     @Autowired
@@ -20,20 +21,25 @@ public class TimeService {
         this.timeRepository = timeRepository;
     }
 
+    @Override
     // get all time
     public List<Time> getAllTime(){
         return timeRepository.findAll();
     }
 
+    @Override
     // get time by id
     public Time getTimeById(Integer timeId){
         return timeRepository.findById(timeId).get();
     }
+
+    @Override
     // create product
     public void createTime(Time time){
         timeRepository.save(time);
     }
 
+    @Override
     // update product
     @Transactional
     public void updateTime(Integer timeId, Integer month, Integer year, Integer quarter){
@@ -49,6 +55,7 @@ public class TimeService {
         }
     }
 
+    @Override
     // delete product
     public void deleteTime(Integer timeId){
         boolean exists = timeRepository.existsById(timeId);

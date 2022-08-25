@@ -14,7 +14,9 @@ public interface LocationRepository extends JpaRepository<Location, Integer> {
 
     @Query("SELECT l FROM Location as l WHERE l.city = :city")
     Optional<Location> findLocationByCity (@Param("city") String city);
+    // cách 2: Location findByCity(String city);
 
     @Query("SELECT l FROM Location l WHERE l.country = :country ")
     Optional<Location> findLocationByCountry (@Param("country") String country);
+
 }

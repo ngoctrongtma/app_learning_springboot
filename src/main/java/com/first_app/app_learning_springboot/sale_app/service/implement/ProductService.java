@@ -1,7 +1,8 @@
-package com.first_app.app_learning_springboot.sale_app.service;
+package com.first_app.app_learning_springboot.sale_app.service.implement;
 
 import com.first_app.app_learning_springboot.sale_app.model.Product;
 import com.first_app.app_learning_springboot.sale_app.repository.ProductRepository;
+import com.first_app.app_learning_springboot.sale_app.service.ProductServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +11,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Service
-public class ProductService {
+public class ProductService implements ProductServiceInterface {
     private final ProductRepository productRepository;
 
     @Autowired
@@ -18,20 +19,25 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
+    @Override
     // get all product
     public List<Product> getAllProduct(){
         return productRepository.findAll();
     }
 
+    @Override
     // get product by id
     public Product getProductById(Integer productId){
         return productRepository.findById(productId).get();
     }
+
+    @Override
     // create product
     public void createProduct(Product product){
         productRepository.save(product);
     }
 
+    @Override
     // update product
     @Transactional
     public void updateProduct(Integer productId, Integer item, String productClass, String inventory){
@@ -48,6 +54,7 @@ public class ProductService {
 
     }
 
+    @Override
     // delete product
     public void deleteProduct(Integer productId){
         boolean exists = productRepository.existsById(productId);
