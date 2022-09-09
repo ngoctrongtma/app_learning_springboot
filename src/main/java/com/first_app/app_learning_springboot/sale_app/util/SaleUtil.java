@@ -9,7 +9,9 @@ import com.first_app.app_learning_springboot.sale_app.repository.LocationReposit
 import com.first_app.app_learning_springboot.sale_app.repository.ProductRepository;
 import com.first_app.app_learning_springboot.sale_app.repository.TimeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class SaleUtil {
     private final LocationRepository locationRepository;
     private final TimeRepository timeRepository;
@@ -21,15 +23,14 @@ public class SaleUtil {
         this.productRepository = productRepository;
         this.timeRepository = timeRepository;
     }
-
-    public static Sale convertSale(SaleDTO saleDTO,ProductRepository productRepository, LocationRepository locationRepository, TimeRepository timeRepository){
+    public Sale convertToSale(SaleDTO saleDTO){
         Integer productId = saleDTO.getProductId();
         Integer locationId = saleDTO.getLocationId();
         Integer timeId = saleDTO.getTimeId();
 
-        Product product = productRepository.findById(productId).get();
-        Location location = locationRepository.findById(locationId).get();
-        Time time = timeRepository.findById(timeId).get();
+        Product product = this.productRepository.findById(productId).get();
+        Location location = this.locationRepository.findById(locationId).get();
+        Time time = this.timeRepository.findById(timeId).get();
 
         if(product != null && location != null && time != null){
             Sale sale = new Sale(product, location, time, saleDTO.getDollars());
@@ -37,5 +38,15 @@ public class SaleUtil {
         }else{
             return new Sale();
         }
+    }
+    
+    public SaleDTO convertToSaleDTO(Sale sale){
+        Integer productId = sale.getProduct().getId();
+        Integer locationId = sale.getLocation().getLocationId();
+        Integer timeId = sale.getTime().getId();
+        Double dollars = sale.getDollars();
+
+        SaleDTO saleDTO = new SaleDTO(productId,locationId, timeId, dollars);
+        return saleDTO;
     }
 }

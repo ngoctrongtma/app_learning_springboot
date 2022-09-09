@@ -1,0 +1,12 @@
+common-url:
+  locationUrl : api/v1/location
+  productUrl : api/v1/product
+  saleUrl : api/v1/sale
+  timeUrl : api/v1/time
+nested-properties:
+  demoList:
+    - value1
+    - value2
+  demoMap:
+    key1: value1
+    key2: value2

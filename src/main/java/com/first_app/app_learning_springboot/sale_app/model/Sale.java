@@ -11,18 +11,17 @@ public class Sale {
     @GeneratedValue
     private Integer id;
 
-//    @Id
+//  @Id
     @ManyToOne
 //  @PrimaryKeyJoinColumn(name = "product_id")
     @JoinColumn(name = "product_id")
     private Product product;
 
-//    @Id
+    //   @Id
     @ManyToOne
     @JoinColumn(name = "location_id")
     private Location location;
-
- //   @Id
+    //   @Id
     @ManyToOne
     @JoinColumn(name = "time_id")
     private Time time;

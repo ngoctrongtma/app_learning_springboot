@@ -1,8 +1,10 @@
 package com.first_app.app_learning_springboot.sale_app.controller;
 
+import com.first_app.app_learning_springboot.sale_app.dto.SaleDTO;
 import com.first_app.app_learning_springboot.sale_app.model.Sale;
 import com.first_app.app_learning_springboot.sale_app.service.SaleServiceInterface;
 import com.first_app.app_learning_springboot.sale_app.util.SaleAppUrlUtil;
+import com.first_app.app_learning_springboot.sale_app.util.SaleUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,13 +19,14 @@ public class SaleController {
     @Autowired
     public SaleController(SaleServiceInterface saleServiceInterface){
         this.saleService = saleServiceInterface;
+
     }
 
     Logger logger
             = LoggerFactory.getLogger(SaleController.class);
 
     @GetMapping
-    public List<Sale> getAllSale(){
+    public List<SaleDTO> getAllSale(){
         logger.info("get all sale");
         return saleService.getAllSale();
     }
@@ -35,7 +38,7 @@ public class SaleController {
     }
 
     @PostMapping
-    public void createSale(@RequestBody Sale sale){
+    public void createSale(@RequestBody SaleDTO sale){
         logger.info("create sale");
         saleService.createSale(sale);
     }

@@ -53,5 +53,13 @@ public class Location {
         this.city = city;
     }
 
-
+    @Override
+    public String toString() {
+        return "Location{" +
+                "id=" + id +
+                ", country='" + country + '\'' +
+                ", city='" + city + '\'' +
+                ", sales=" + sales +
+                '}';
+    }
 }

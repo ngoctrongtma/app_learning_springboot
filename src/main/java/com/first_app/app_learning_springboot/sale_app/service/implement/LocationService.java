@@ -16,8 +16,18 @@ public class LocationService implements LocationServiceInteface {
     private final LocationRepository locationRepository;
 
     @Autowired
+    // @Autowired help inject LocationRepository into locationService
     public LocationService(LocationRepository locationRepository){
         this.locationRepository = locationRepository;
+    }
+
+//    public LocationService() {
+//
+//    }
+
+    @Override
+    public int countLocation(){
+        return locationRepository.findAll().size();
     }
 
     @Override
@@ -29,10 +39,11 @@ public class LocationService implements LocationServiceInteface {
         return locationRepository.findAll();
     }
 
-
     @Override
     // get location by Id
     public Location getLocationById(Integer location_Id){
+
+        System.out.println("location service------------:"+locationRepository.findById(location_Id).get().toString());
         return locationRepository.findById(location_Id).get();
     }
 

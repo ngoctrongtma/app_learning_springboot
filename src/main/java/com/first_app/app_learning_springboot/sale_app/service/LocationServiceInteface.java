@@ -7,6 +7,7 @@ import java.util.List;
 public interface LocationServiceInteface {
     //get all location
     List<Location> getLocations();
+    int countLocation();
     Location getLocationById(Integer location_Id);
     void addLocation(Location location);
     void updateLocation(Integer locationId, String country, String city);
