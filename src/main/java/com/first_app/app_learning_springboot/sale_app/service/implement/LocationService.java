@@ -21,10 +21,6 @@ public class LocationService implements LocationServiceInteface {
         this.locationRepository = locationRepository;
     }
 
-//    public LocationService() {
-//
-//    }
-
     @Override
     public int countLocation(){
         return locationRepository.findAll().size();
@@ -43,8 +39,7 @@ public class LocationService implements LocationServiceInteface {
     // get location by Id
     public Location getLocationById(Integer location_Id){
 
-        System.out.println("location service------------:"+locationRepository.findById(location_Id).get().toString());
-        return locationRepository.findById(location_Id).get();
+        return locationRepository.findById(location_Id).orElse(new Location());
     }
 
     @Override

@@ -1,6 +1,8 @@
 package com.first_app.app_learning_springboot;
 
 //import com.first_app.app_learning_springboot.student.Student;
+import com.first_app.app_learning_springboot.sale_app.service.LocationServiceInteface;
+import com.first_app.app_learning_springboot.sale_app.service.implement.LocationService;
 import com.first_app.app_learning_springboot.sale_app.util.NestedPropertiesExample;
 import com.first_app.app_learning_springboot.sale_app.util.SaleAppProperties;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.ApplicationContext;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,7 +24,9 @@ import java.util.List;
 public class AppLearningSpringbootApplication implements CommandLineRunner {
 
 	public static void main(String[] args) {
-		SpringApplication.run(AppLearningSpringbootApplication.class, args);
+		ApplicationContext applicationContext = SpringApplication.run(AppLearningSpringbootApplication.class, args);
+
+		LocationServiceInteface locationServiceInteface = applicationContext.getBean(LocationServiceInteface.class);
 		//1. create container
 		//2. find all dependency in project and insert them to container.
 		//3. container => ApplicationContext, dependency => Bean.

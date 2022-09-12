@@ -29,6 +29,7 @@ public class LocationController {
     @GetMapping
     public List<Location> getLocations(){
         logger.info("get all location");
+
         return locationService.getLocations();
     }
 
