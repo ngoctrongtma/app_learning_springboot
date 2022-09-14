@@ -22,7 +22,6 @@ public class Time {
     @OneToMany(mappedBy = "time", cascade = CascadeType.ALL)  // MappedBy point to time variable in Sales.
     private Collection<Sale> sales;
 
-
     public Time(Integer time_Id, Integer month, Integer quarter, Integer year) {
         id = time_Id;
         this.month = month;

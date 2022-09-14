@@ -1,11 +1,12 @@
 package com.first_app.app_learning_springboot.SaleAppControllerTest;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.first_app.app_learning_springboot.sale_app.model.Location;
 import com.first_app.app_learning_springboot.sale_app.model.Product;
-import com.first_app.app_learning_springboot.sale_app.service.implement.LocationService;
 import com.first_app.app_learning_springboot.sale_app.service.implement.ProductService;
+import org.easymock.EasyMock;
 import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
+import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -31,6 +32,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
+// @RunWith(MockitoJUnitRunner.class )
 public class ProductControllerTest {
     /**
      * Đối tượng MockMvc do Spring cung cấp
@@ -68,7 +70,13 @@ public class ProductControllerTest {
                 .collect(Collectors.toList());
 
         // giả lập todoService trả về List mong muốn
-        given(productService.getProductById(1)).willReturn(new Product(1, 10 + 1 , "Class-1", "Inventory-1"));
+    //    given(productService.getProductById(1)).willReturn(new Product(1, 10 + 1 , "Class-1", "Inventory-1"));
+
+        // add the behavior of calc service to add two numbers
+        EasyMock.expect(productService.getAllProduct()).andReturn(allProduct);
+
+        //activate the mock
+        EasyMock.replay(productService);
 
         mvc.perform(get("/api/v1/product/1").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
@@ -114,7 +122,7 @@ public class ProductControllerTest {
 //
     @Test
     public void testDeleteProduct() throws Exception {
-        String uri = "/api/v1/location/1";
+        String uri = "/api/v1/product/1";
         MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.delete(uri)).andReturn();
         int status = mvcResult.getResponse().getStatus();
         assertEquals(200, status);

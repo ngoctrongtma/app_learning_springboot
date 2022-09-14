@@ -5,12 +5,16 @@ import com.first_app.app_learning_springboot.sale_app.service.LocationServiceInt
 import com.first_app.app_learning_springboot.sale_app.util.SaleAppUrlUtil;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.RequestEntity;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.servlet.function.EntityResponse;
+import org.springframework.web.servlet.function.ServerResponse;
 
 @RestController
 @RequestMapping(path = SaleAppUrlUtil.locationUrl)
@@ -27,10 +31,10 @@ public class LocationController {
     }
 
     @GetMapping
-    public List<Location> getLocations(){
+    public ResponseEntity<List<Location>> getLocations(){
         logger.info("get all location");
 
-        return locationService.getLocations();
+        return ResponseEntity.ok().body(this.locationService.getLocations());
     }
 
     @GetMapping(path = "{locationId}")

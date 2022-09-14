@@ -61,8 +61,6 @@ public class LocationServiceTest {
         // set up for test update function
 //        Mockito.when(locationRepository.(Mockito.eq(0)))
 //                .thenReturn(Optional.of(location));
-
-
     }
 
     @Test

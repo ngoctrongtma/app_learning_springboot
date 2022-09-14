@@ -14,7 +14,8 @@ import java.util.List;
 @RequestMapping(path = SaleAppUrlUtil.timeUrl)
 public class TimeController {
 
-    private final TimeServiceInterface timeService;
+    public TimeController(){ }
+    private  TimeServiceInterface timeService;
     @Autowired
     public TimeController(TimeServiceInterface timeServiceInterface){
         this.timeService = timeServiceInterface;

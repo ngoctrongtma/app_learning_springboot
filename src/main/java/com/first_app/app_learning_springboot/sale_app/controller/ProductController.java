@@ -12,11 +12,17 @@ import java.util.List;
 @RestController
 @RequestMapping(path = SaleAppUrlUtil.productUrl)
 public class ProductController {
-    private final ProductServiceInterface productService;
+
+    public ProductController( ) {}
+
     @Autowired
-    public ProductController(ProductServiceInterface productServiceInterface){
-        this.productService = productServiceInterface;
-    }
+    private ProductServiceInterface productService;
+
+//    private final ProductServiceInterface productService;
+//    @Autowired
+//    public ProductController(ProductServiceInterface productServiceInterface){
+//        this.productService = productServiceInterface;
+//    }
     Logger logger
             = LoggerFactory.getLogger(ProductController.class);
 
